@@ -160,13 +160,13 @@ This instance will be created in the same `PRIVATE_WITH_EGRESS` SubnetType that 
 
 From the EC2 Console, you can Connect to the instance.
 
-![EC2Instance](../../public/images/RDS-EC2Instance.png)
+![EC2Instance](/images/blog/RDS-EC2Instance.png)
 
 ### Secret Manager
 
 In order to connect to the PostgreSQL database, you will need the `hostname`, `username`, and `password`. These have been automatically generated for you and stored in [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/).
 
-![SecretManger](../../public/images/RDS-SecretManager.png)
+![SecretManger](/images/blog/RDS-SecretManager.png)
 
 Once connected to the the EC2 Instance, using [AWS Session Manger](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html) you can connect to the RDS database using `psql`.
 
@@ -176,7 +176,7 @@ psql -h host -p 5432 -U postgres postgres
 
 In this example, replace `host` with the value from the Secrets.
 
-![Secrets](../../public/images/RDS-Secrets.png)
+![Secrets](/images/blog/RDS-Secrets.png)
 
 At the prompt, enter the `password` from the Secrets.
 
@@ -188,7 +188,7 @@ From the prompt, verify that the table has been created:
 \dt+
 ```
 
-The output should be similar to:
+Output:
 
 ```
                       List of relations
@@ -202,6 +202,8 @@ However, nothing has been created in the table yet:
 ```sql
 SELECT * FROM queries;
 ```
+
+Output:
 
 ```
  id | query_date
