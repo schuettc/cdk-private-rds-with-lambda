@@ -855,7 +855,7 @@ exports[`Snapshot 1`] = `
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "36cedd886ff667a9cbf7ef9a1808e5f304af2d6f4d6322b13d968a5aac294b2e.zip",
+          "S3Key": "dc6df6e12964c1c8ae634db95440b3894a8df63a17ea4cac3344ceb7db22e0e8.zip",
         },
         "Description": "Lambda Powertools for Python with Pydantic version 1.22.0",
         "LicenseInfo": "MIT-0",
