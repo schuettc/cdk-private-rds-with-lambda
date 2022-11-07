@@ -1,0 +1,1550 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot 1`] = `
+{
+  "Parameters": {
+    "BootstrapVersion": {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+    "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amihvmarm64gp2C96584B6F00A464EAD1953AFF4B05118Parameter": {
+      "Default": "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-arm64-gp2",
+      "Type": "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>",
+    },
+  },
+  "Resources": {
+    "EC2Instance83772BA2258cee9964583355": {
+      "CreationPolicy": {
+        "ResourceSignal": {
+          "Count": 1,
+          "Timeout": "PT20M",
+        },
+      },
+      "DependsOn": [
+        "EC2InstanceasteriskEc2RoleDefaultPolicy69791298",
+        "EC2InstanceasteriskEc2Role1A137F68",
+      ],
+      "Metadata": {
+        "AWS::CloudFormation::Init": {
+          "configSets": {
+            "default": [
+              "install",
+            ],
+          },
+          "install": {
+            "commands": {
+              "000": {
+                "command": "yum update -y",
+              },
+              "001": {
+                "command": "yum upgrade -y",
+              },
+              "002": {
+                "command": "amazon-linux-extras install postgresql12",
+              },
+            },
+          },
+        },
+      },
+      "Properties": {
+        "AvailabilityZone": {
+          "Fn::Select": [
+            0,
+            {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "IamInstanceProfile": {
+          "Ref": "EC2InstanceInstanceProfileF3153224",
+        },
+        "ImageId": {
+          "Ref": "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amihvmarm64gp2C96584B6F00A464EAD1953AFF4B05118Parameter",
+        },
+        "InstanceType": "c6g.medium",
+        "SecurityGroupIds": [
+          {
+            "Fn::GetAtt": [
+              "EC2InstanceInstanceSecurityGroupA814383D",
+              "GroupId",
+            ],
+          },
+          {
+            "Fn::GetAtt": [
+              "QuickSightQuickSightSGD5F14259",
+              "GroupId",
+            ],
+          },
+          {
+            "Fn::GetAtt": [
+              "EC2InstanceSSHSecurityGroupAD1208B9",
+              "GroupId",
+            ],
+          },
+        ],
+        "SubnetId": {
+          "Ref": "vpcVPCPrivateWithEgressSubnet1SubnetE70649C3",
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "test/EC2Instance/Instance",
+          },
+        ],
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "",
+              [
+                "#!/bin/bash
+# fingerprint: 77a1b35b6872e14e
+(
+  set +e
+  /opt/aws/bin/cfn-init -v --region ",
+                {
+                  "Ref": "AWS::Region",
+                },
+                " --stack ",
+                {
+                  "Ref": "AWS::StackName",
+                },
+                " --resource EC2Instance83772BA2258cee9964583355 --url https://cloudformation.",
+                {
+                  "Ref": "AWS::Region",
+                },
+                ".",
+                {
+                  "Ref": "AWS::URLSuffix",
+                },
+                " --role ",
+                {
+                  "Ref": "EC2InstanceasteriskEc2Role1A137F68",
+                },
+                " -c default
+  /opt/aws/bin/cfn-signal -e $? --region ",
+                {
+                  "Ref": "AWS::Region",
+                },
+                " --stack ",
+                {
+                  "Ref": "AWS::StackName",
+                },
+                " --resource EC2Instance83772BA2258cee9964583355 --url https://cloudformation.",
+                {
+                  "Ref": "AWS::Region",
+                },
+                ".",
+                {
+                  "Ref": "AWS::URLSuffix",
+                },
+                " --role ",
+                {
+                  "Ref": "EC2InstanceasteriskEc2Role1A137F68",
+                },
+                "
+  cat /var/log/cfn-init.log >&2
+)",
+              ],
+            ],
+          },
+        },
+      },
+      "Type": "AWS::EC2::Instance",
+    },
+    "EC2InstanceInstanceProfileF3153224": {
+      "Properties": {
+        "Roles": [
+          {
+            "Ref": "EC2InstanceasteriskEc2Role1A137F68",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::InstanceProfile",
+    },
+    "EC2InstanceInstanceSecurityGroupA814383D": {
+      "Properties": {
+        "GroupDescription": "test/EC2Instance/Instance/InstanceSecurityGroup",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "test/EC2Instance/Instance",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVPC34EBC5A1",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "EC2InstanceSSHSecurityGroupAD1208B9": {
+      "Properties": {
+        "GroupDescription": "Security Group for SSH",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "SecurityGroupIngress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow SSH Access",
+            "FromPort": 22,
+            "IpProtocol": "tcp",
+            "ToPort": 22,
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVPC34EBC5A1",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "EC2InstanceasteriskEc2Role1A137F68": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "ec2.",
+                      {
+                        "Ref": "AWS::URLSuffix",
+                      },
+                    ],
+                  ],
+                },
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/AmazonSSMManagedInstanceCore",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "EC2InstanceasteriskEc2RoleDefaultPolicy69791298": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "cloudformation:DescribeStackResource",
+                "cloudformation:SignalResource",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Ref": "AWS::StackId",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "EC2InstanceasteriskEc2RoleDefaultPolicy69791298",
+        "Roles": [
+          {
+            "Ref": "EC2InstanceasteriskEc2Role1A137F68",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "LambdaQueryLambda8DAAFA95": {
+      "DependsOn": [
+        "layerlambdaRole0E444628",
+        "vpcVPCPrivateWithEgressSubnet1DefaultRouteB4511D7E",
+        "vpcVPCPrivateWithEgressSubnet1RouteTableAssociation31ED9DAF",
+        "vpcVPCPrivateWithEgressSubnet2DefaultRouteA57090C4",
+        "vpcVPCPrivateWithEgressSubnet2RouteTableAssociation8E5E95DD",
+      ],
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "3cf295332ec5c3c9e323a45edeb15cd4356a9992347d71acacb82b8f8f12a89b.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "RDS_SECRET_NAME": {
+              "Fn::Join": [
+                "-",
+                [
+                  {
+                    "Fn::Select": [
+                      0,
+                      {
+                        "Fn::Split": [
+                          "-",
+                          {
+                            "Fn::Select": [
+                              6,
+                              {
+                                "Fn::Split": [
+                                  ":",
+                                  {
+                                    "Ref": "rdsdatabaseSecret6D3D8B72",
+                                  },
+                                ],
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    "Fn::Select": [
+                      1,
+                      {
+                        "Fn::Split": [
+                          "-",
+                          {
+                            "Fn::Select": [
+                              6,
+                              {
+                                "Fn::Split": [
+                                  ":",
+                                  {
+                                    "Ref": "rdsdatabaseSecret6D3D8B72",
+                                  },
+                                ],
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              ],
+            },
+          },
+        },
+        "Handler": "index.handler",
+        "Layers": [
+          {
+            "Ref": "layerPowerToolsLayer55ACC0E7",
+          },
+        ],
+        "Role": {
+          "Fn::GetAtt": [
+            "layerlambdaRole0E444628",
+            "Arn",
+          ],
+        },
+        "Runtime": "python3.9",
+        "Timeout": 300,
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "LambdaQueryLambdaSecurityGroup01B7A0AB",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Ref": "vpcVPCPrivateWithEgressSubnet1SubnetE70649C3",
+            },
+            {
+              "Ref": "vpcVPCPrivateWithEgressSubnet2Subnet5E6D460E",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "LambdaQueryLambdaSecurityGroup01B7A0AB": {
+      "DependsOn": [
+        "vpcVPCPrivateWithEgressSubnet1DefaultRouteB4511D7E",
+        "vpcVPCPrivateWithEgressSubnet1RouteTableAssociation31ED9DAF",
+        "vpcVPCPrivateWithEgressSubnet2DefaultRouteA57090C4",
+        "vpcVPCPrivateWithEgressSubnet2RouteTableAssociation8E5E95DD",
+      ],
+      "Properties": {
+        "GroupDescription": "Automatic security group for Lambda Function testLambdaQueryLambdaBDE85698",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVPC34EBC5A1",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A": {
+      "DependsOn": [
+        "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
+        "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB",
+      ],
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "eb5b005c858404ea0c8f68098ed5dcdf5340e02461f149751d10f59c210d5ef8.zip",
+        },
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs14.x",
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:PutRetentionPolicy",
+                "logs:DeleteRetentionPolicy",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
+        "Roles": [
+          {
+            "Ref": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "QuickSightQuickSightSGD5F14259": {
+      "Properties": {
+        "GroupDescription": "test/QuickSight/QuickSightSG",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "SecurityGroupIngress": [
+          {
+            "Description": {
+              "Fn::Join": [
+                "",
+                [
+                  "from ",
+                  {
+                    "Fn::GetAtt": [
+                      "vpcQuerySecurityGroup124BE6CA",
+                      "GroupId",
+                    ],
+                  },
+                  ":ALL PORTS",
+                ],
+              ],
+            },
+            "FromPort": 0,
+            "IpProtocol": "tcp",
+            "SourceSecurityGroupId": {
+              "Fn::GetAtt": [
+                "vpcQuerySecurityGroup124BE6CA",
+                "GroupId",
+              ],
+            },
+            "ToPort": 65535,
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVPC34EBC5A1",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "ScheduleRuleAllowEventRuletestLambdaQueryLambdaBDE85698C4A571E9": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "LambdaQueryLambda8DAAFA95",
+            "Arn",
+          ],
+        },
+        "Principal": "events.amazonaws.com",
+        "SourceArn": {
+          "Fn::GetAtt": [
+            "ScheduleRuleDA5BD877",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "ScheduleRuleDA5BD877": {
+      "Properties": {
+        "ScheduleExpression": "cron(0 4 * * ? *)",
+        "State": "ENABLED",
+        "Targets": [
+          {
+            "Arn": {
+              "Fn::GetAtt": [
+                "LambdaQueryLambda8DAAFA95",
+                "Arn",
+              ],
+            },
+            "Id": "Target0",
+          },
+        ],
+      },
+      "Type": "AWS::Events::Rule",
+    },
+    "initializeCustomResourceProviderframeworkonEvent3D022C4F": {
+      "DependsOn": [
+        "initializeCustomResourceProviderframeworkonEventServiceRoleDefaultPolicy3176266A",
+        "initializeCustomResourceProviderframeworkonEventServiceRoleA96E6E6D",
+      ],
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "6ff23d2800aac27308e31c227529dc13854507c3b2598d2433fcf82604fa054d.zip",
+        },
+        "Description": "AWS CDK resource provider framework - onEvent (test/initialize/CustomResourceProvider)",
+        "Environment": {
+          "Variables": {
+            "USER_ON_EVENT_FUNCTION_ARN": {
+              "Fn::GetAtt": [
+                "initializeInitializeTableLambda5CAAE01D",
+                "Arn",
+              ],
+            },
+          },
+        },
+        "Handler": "framework.onEvent",
+        "Role": {
+          "Fn::GetAtt": [
+            "initializeCustomResourceProviderframeworkonEventServiceRoleA96E6E6D",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs14.x",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "initializeCustomResourceProviderframeworkonEventLogRetentionBFEC8359": {
+      "Properties": {
+        "LogGroupName": {
+          "Fn::Join": [
+            "",
+            [
+              "/aws/lambda/",
+              {
+                "Ref": "initializeCustomResourceProviderframeworkonEvent3D022C4F",
+              },
+            ],
+          ],
+        },
+        "RetentionInDays": 7,
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "Custom::LogRetention",
+    },
+    "initializeCustomResourceProviderframeworkonEventServiceRoleA96E6E6D": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "initializeCustomResourceProviderframeworkonEventServiceRoleDefaultPolicy3176266A": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "initializeInitializeTableLambda5CAAE01D",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "initializeInitializeTableLambda5CAAE01D",
+                          "Arn",
+                        ],
+                      },
+                      ":*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "initializeCustomResourceProviderframeworkonEventServiceRoleDefaultPolicy3176266A",
+        "Roles": [
+          {
+            "Ref": "initializeCustomResourceProviderframeworkonEventServiceRoleA96E6E6D",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "initializeInitializeTableLambda5CAAE01D": {
+      "DependsOn": [
+        "layerlambdaRole0E444628",
+        "vpcVPCPrivateWithEgressSubnet1DefaultRouteB4511D7E",
+        "vpcVPCPrivateWithEgressSubnet1RouteTableAssociation31ED9DAF",
+        "vpcVPCPrivateWithEgressSubnet2DefaultRouteA57090C4",
+        "vpcVPCPrivateWithEgressSubnet2RouteTableAssociation8E5E95DD",
+      ],
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "84904ab18a686a6c4e3611cb30dd299f278cdee730d09cdde10c3297fcdbf062.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "RDS_SECRET_NAME": {
+              "Fn::Join": [
+                "-",
+                [
+                  {
+                    "Fn::Select": [
+                      0,
+                      {
+                        "Fn::Split": [
+                          "-",
+                          {
+                            "Fn::Select": [
+                              6,
+                              {
+                                "Fn::Split": [
+                                  ":",
+                                  {
+                                    "Ref": "rdsdatabaseSecret6D3D8B72",
+                                  },
+                                ],
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    "Fn::Select": [
+                      1,
+                      {
+                        "Fn::Split": [
+                          "-",
+                          {
+                            "Fn::Select": [
+                              6,
+                              {
+                                "Fn::Split": [
+                                  ":",
+                                  {
+                                    "Ref": "rdsdatabaseSecret6D3D8B72",
+                                  },
+                                ],
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              ],
+            },
+          },
+        },
+        "Handler": "index.handler",
+        "Layers": [
+          {
+            "Ref": "layerPowerToolsLayer55ACC0E7",
+          },
+        ],
+        "Role": {
+          "Fn::GetAtt": [
+            "layerlambdaRole0E444628",
+            "Arn",
+          ],
+        },
+        "Runtime": "python3.9",
+        "Timeout": 300,
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "initializeInitializeTableLambdaSecurityGroupCAE7E6B6",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Ref": "vpcVPCPrivateWithEgressSubnet1SubnetE70649C3",
+            },
+            {
+              "Ref": "vpcVPCPrivateWithEgressSubnet2Subnet5E6D460E",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "initializeInitializeTableLambdaSecurityGroupCAE7E6B6": {
+      "DependsOn": [
+        "vpcVPCPrivateWithEgressSubnet1DefaultRouteB4511D7E",
+        "vpcVPCPrivateWithEgressSubnet1RouteTableAssociation31ED9DAF",
+        "vpcVPCPrivateWithEgressSubnet2DefaultRouteA57090C4",
+        "vpcVPCPrivateWithEgressSubnet2RouteTableAssociation8E5E95DD",
+      ],
+      "Properties": {
+        "GroupDescription": "Automatic security group for Lambda Function testinitializeInitializeTableLambda68E528FF",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVPC34EBC5A1",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "initializecustomResourceResult3EDBB9A6": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "initializeCustomResourceProviderframeworkonEvent3D022C4F",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::CloudFormation::CustomResource",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "layerPowerToolsLayer55ACC0E7": {
+      "Properties": {
+        "CompatibleRuntimes": [
+          "python3.6",
+          "python3.7",
+          "python3.8",
+          "python3.9",
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "a4636cddb3160df18d6c5fc260545cd6c831ca3997a62070989eb0c908329ded.zip",
+        },
+        "Description": "Lambda Powertools for Python with Pydantic version 1.22.0",
+        "LicenseInfo": "MIT-0",
+      },
+      "Type": "AWS::Lambda::LayerVersion",
+    },
+    "layerlambdaRole0E444628": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+              ],
+            ],
+          },
+        ],
+        "Policies": [
+          {
+            "PolicyDocument": {
+              "Statement": [
+                {
+                  "Action": "secretsmanager:GetSecretValue",
+                  "Effect": "Allow",
+                  "Resource": {
+                    "Ref": "rdsdatabaseSecretAttachment890E488B",
+                  },
+                },
+              ],
+              "Version": "2012-10-17",
+            },
+            "PolicyName": "secrets",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "rdsdatabaseDA351F35": {
+      "DeletionPolicy": "Snapshot",
+      "Properties": {
+        "AllocatedStorage": "100",
+        "AllowMajorVersionUpgrade": true,
+        "AutoMinorVersionUpgrade": true,
+        "BackupRetentionPeriod": 21,
+        "CopyTagsToSnapshot": true,
+        "DBInstanceClass": "db.t4g.large",
+        "DBSubnetGroupName": {
+          "Ref": "rdsdatabaseSubnetGroup235AF65D",
+        },
+        "Engine": "postgres",
+        "MasterUserPassword": {
+          "Fn::Join": [
+            "",
+            [
+              "{{resolve:secretsmanager:",
+              {
+                "Ref": "rdsdatabaseSecret6D3D8B72",
+              },
+              ":SecretString:password::}}",
+            ],
+          ],
+        },
+        "MasterUsername": {
+          "Fn::Join": [
+            "",
+            [
+              "{{resolve:secretsmanager:",
+              {
+                "Ref": "rdsdatabaseSecret6D3D8B72",
+              },
+              ":SecretString:username::}}",
+            ],
+          ],
+        },
+        "MultiAZ": false,
+        "PubliclyAccessible": false,
+        "StorageType": "gp2",
+        "VPCSecurityGroups": [
+          {
+            "Fn::GetAtt": [
+              "vpcQuerySecurityGroup124BE6CA",
+              "GroupId",
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::RDS::DBInstance",
+      "UpdateReplacePolicy": "Snapshot",
+    },
+    "rdsdatabaseSecret6D3D8B72": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "Description": {
+          "Fn::Join": [
+            "",
+            [
+              "Generated by the CDK for stack: ",
+              {
+                "Ref": "AWS::StackName",
+              },
+            ],
+          ],
+        },
+        "GenerateSecretString": {
+          "ExcludeCharacters": " %+~\`#$&*()|[]{}:;<>?!'/@"\\",
+          "GenerateStringKey": "password",
+          "PasswordLength": 30,
+          "SecretStringTemplate": "{"username":"postgres"}",
+        },
+      },
+      "Type": "AWS::SecretsManager::Secret",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "rdsdatabaseSecretAttachment890E488B": {
+      "Properties": {
+        "SecretId": {
+          "Ref": "rdsdatabaseSecret6D3D8B72",
+        },
+        "TargetId": {
+          "Ref": "rdsdatabaseDA351F35",
+        },
+        "TargetType": "AWS::RDS::DBInstance",
+      },
+      "Type": "AWS::SecretsManager::SecretTargetAttachment",
+    },
+    "rdsdatabaseSubnetGroup235AF65D": {
+      "Properties": {
+        "DBSubnetGroupDescription": "Subnet group for database database",
+        "SubnetIds": [
+          {
+            "Ref": "vpcVPCPrivateSubnet1Subnet247B8AE6",
+          },
+          {
+            "Ref": "vpcVPCPrivateSubnet2Subnet12F837CE",
+          },
+        ],
+      },
+      "Type": "AWS::RDS::DBSubnetGroup",
+    },
+    "vpcQuerySecurityGroup124BE6CA": {
+      "Properties": {
+        "GroupDescription": "Security Group for Query",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "SecurityGroupIngress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "from 0.0.0.0/0:5432",
+            "FromPort": 5432,
+            "IpProtocol": "tcp",
+            "ToPort": 5432,
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVPC34EBC5A1",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "vpcVPC34EBC5A1": {
+      "Properties": {
+        "CidrBlock": "10.0.0.0/16",
+        "EnableDnsHostnames": true,
+        "EnableDnsSupport": true,
+        "InstanceTenancy": "default",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "test/vpc/VPC",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::VPC",
+    },
+    "vpcVPCIGW9AFD2596": {
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "test/vpc/VPC",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::InternetGateway",
+    },
+    "vpcVPCPrivateSubnet1RouteTable54251FEC": {
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "test/vpc/VPC/PrivateSubnet1",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVPC34EBC5A1",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "vpcVPCPrivateSubnet1RouteTableAssociation1A88AEE7": {
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "vpcVPCPrivateSubnet1RouteTable54251FEC",
+        },
+        "SubnetId": {
+          "Ref": "vpcVPCPrivateSubnet1Subnet247B8AE6",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "vpcVPCPrivateSubnet1Subnet247B8AE6": {
+      "Properties": {
+        "AvailabilityZone": {
+          "Fn::Select": [
+            0,
+            {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "CidrBlock": "10.0.0.0/24",
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private",
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Isolated",
+          },
+          {
+            "Key": "Name",
+            "Value": "test/vpc/VPC/PrivateSubnet1",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVPC34EBC5A1",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "vpcVPCPrivateSubnet2RouteTableAssociation39940E14": {
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "vpcVPCPrivateSubnet2RouteTableED79065B",
+        },
+        "SubnetId": {
+          "Ref": "vpcVPCPrivateSubnet2Subnet12F837CE",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "vpcVPCPrivateSubnet2RouteTableED79065B": {
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "test/vpc/VPC/PrivateSubnet2",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVPC34EBC5A1",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "vpcVPCPrivateSubnet2Subnet12F837CE": {
+      "Properties": {
+        "AvailabilityZone": {
+          "Fn::Select": [
+            1,
+            {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "CidrBlock": "10.0.1.0/24",
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private",
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Isolated",
+          },
+          {
+            "Key": "Name",
+            "Value": "test/vpc/VPC/PrivateSubnet2",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVPC34EBC5A1",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "vpcVPCPrivateWithEgressSubnet1DefaultRouteB4511D7E": {
+      "Properties": {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "NatGatewayId": {
+          "Ref": "vpcVPCPublicSubnet1NATGateway88DF68F5",
+        },
+        "RouteTableId": {
+          "Ref": "vpcVPCPrivateWithEgressSubnet1RouteTable97BA7D89",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "vpcVPCPrivateWithEgressSubnet1RouteTable97BA7D89": {
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "test/vpc/VPC/PrivateWithEgressSubnet1",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVPC34EBC5A1",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "vpcVPCPrivateWithEgressSubnet1RouteTableAssociation31ED9DAF": {
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "vpcVPCPrivateWithEgressSubnet1RouteTable97BA7D89",
+        },
+        "SubnetId": {
+          "Ref": "vpcVPCPrivateWithEgressSubnet1SubnetE70649C3",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "vpcVPCPrivateWithEgressSubnet1SubnetE70649C3": {
+      "Properties": {
+        "AvailabilityZone": {
+          "Fn::Select": [
+            0,
+            {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "CidrBlock": "10.0.2.0/24",
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "PrivateWithEgress",
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Private",
+          },
+          {
+            "Key": "Name",
+            "Value": "test/vpc/VPC/PrivateWithEgressSubnet1",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVPC34EBC5A1",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "vpcVPCPrivateWithEgressSubnet2DefaultRouteA57090C4": {
+      "Properties": {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "NatGatewayId": {
+          "Ref": "vpcVPCPublicSubnet1NATGateway88DF68F5",
+        },
+        "RouteTableId": {
+          "Ref": "vpcVPCPrivateWithEgressSubnet2RouteTable2F24C1C5",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "vpcVPCPrivateWithEgressSubnet2RouteTable2F24C1C5": {
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "test/vpc/VPC/PrivateWithEgressSubnet2",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVPC34EBC5A1",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "vpcVPCPrivateWithEgressSubnet2RouteTableAssociation8E5E95DD": {
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "vpcVPCPrivateWithEgressSubnet2RouteTable2F24C1C5",
+        },
+        "SubnetId": {
+          "Ref": "vpcVPCPrivateWithEgressSubnet2Subnet5E6D460E",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "vpcVPCPrivateWithEgressSubnet2Subnet5E6D460E": {
+      "Properties": {
+        "AvailabilityZone": {
+          "Fn::Select": [
+            1,
+            {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "CidrBlock": "10.0.3.0/24",
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "PrivateWithEgress",
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Private",
+          },
+          {
+            "Key": "Name",
+            "Value": "test/vpc/VPC/PrivateWithEgressSubnet2",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVPC34EBC5A1",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "vpcVPCPublicSubnet1DefaultRoute3ACC8221": {
+      "DependsOn": [
+        "vpcVPCVPCGW136EBA7A",
+      ],
+      "Properties": {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": {
+          "Ref": "vpcVPCIGW9AFD2596",
+        },
+        "RouteTableId": {
+          "Ref": "vpcVPCPublicSubnet1RouteTableC87976E5",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "vpcVPCPublicSubnet1EIP597D2718": {
+      "Properties": {
+        "Domain": "vpc",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "test/vpc/VPC/PublicSubnet1",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::EIP",
+    },
+    "vpcVPCPublicSubnet1NATGateway88DF68F5": {
+      "DependsOn": [
+        "vpcVPCPublicSubnet1DefaultRoute3ACC8221",
+        "vpcVPCPublicSubnet1RouteTableAssociation384CEB85",
+      ],
+      "Properties": {
+        "AllocationId": {
+          "Fn::GetAtt": [
+            "vpcVPCPublicSubnet1EIP597D2718",
+            "AllocationId",
+          ],
+        },
+        "SubnetId": {
+          "Ref": "vpcVPCPublicSubnet1SubnetF705B8BC",
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "test/vpc/VPC/PublicSubnet1",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::NatGateway",
+    },
+    "vpcVPCPublicSubnet1RouteTableAssociation384CEB85": {
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "vpcVPCPublicSubnet1RouteTableC87976E5",
+        },
+        "SubnetId": {
+          "Ref": "vpcVPCPublicSubnet1SubnetF705B8BC",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "vpcVPCPublicSubnet1RouteTableC87976E5": {
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "test/vpc/VPC/PublicSubnet1",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVPC34EBC5A1",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "vpcVPCPublicSubnet1SubnetF705B8BC": {
+      "Properties": {
+        "AvailabilityZone": {
+          "Fn::Select": [
+            0,
+            {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "CidrBlock": "10.0.4.0/24",
+        "MapPublicIpOnLaunch": true,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public",
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public",
+          },
+          {
+            "Key": "Name",
+            "Value": "test/vpc/VPC/PublicSubnet1",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVPC34EBC5A1",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "vpcVPCPublicSubnet2DefaultRouteD58B9CAA": {
+      "DependsOn": [
+        "vpcVPCVPCGW136EBA7A",
+      ],
+      "Properties": {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": {
+          "Ref": "vpcVPCIGW9AFD2596",
+        },
+        "RouteTableId": {
+          "Ref": "vpcVPCPublicSubnet2RouteTable99914EE7",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "vpcVPCPublicSubnet2RouteTable99914EE7": {
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "test/vpc/VPC/PublicSubnet2",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVPC34EBC5A1",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "vpcVPCPublicSubnet2RouteTableAssociationF46F3D6F": {
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "vpcVPCPublicSubnet2RouteTable99914EE7",
+        },
+        "SubnetId": {
+          "Ref": "vpcVPCPublicSubnet2SubnetA9EB156C",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "vpcVPCPublicSubnet2SubnetA9EB156C": {
+      "Properties": {
+        "AvailabilityZone": {
+          "Fn::Select": [
+            1,
+            {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "CidrBlock": "10.0.5.0/24",
+        "MapPublicIpOnLaunch": true,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public",
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public",
+          },
+          {
+            "Key": "Name",
+            "Value": "test/vpc/VPC/PublicSubnet2",
+          },
+        ],
+        "VpcId": {
+          "Ref": "vpcVPC34EBC5A1",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "vpcVPCVPCGW136EBA7A": {
+      "Properties": {
+        "InternetGatewayId": {
+          "Ref": "vpcVPCIGW9AFD2596",
+        },
+        "VpcId": {
+          "Ref": "vpcVPC34EBC5A1",
+        },
+      },
+      "Type": "AWS::EC2::VPCGatewayAttachment",
+    },
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;
