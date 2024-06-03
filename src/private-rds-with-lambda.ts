@@ -2,7 +2,7 @@ import { App, Stack, StackProps } from 'aws-cdk-lib';
 import { Rule, Schedule } from 'aws-cdk-lib/aws-events';
 import { LambdaFunction } from 'aws-cdk-lib/aws-events-targets';
 import { Construct } from 'constructs';
-import { RDS, Lambda, VPC, Initialize, Layer, QuickSight, EC2 } from './index';
+import { RDS, Lambda, VPC, Initialize, QuickSight, EC2 } from './index';
 
 export class PrivateRDSWithLambda extends Stack {
   constructor(scope: Construct, id: string, props: StackProps = {}) {
@@ -14,22 +14,16 @@ export class PrivateRDSWithLambda extends Stack {
       securityGroup: vpc.securityGroup,
     });
 
-    const layer = new Layer(this, 'layer', { dataBase: rds.database });
-
     new Initialize(this, 'initialize', {
       vpc: vpc.vpc,
       securityGroup: vpc.securityGroup,
       dataBase: rds.database,
-      powerToolsLayer: layer.powerToolsLayer,
-      role: layer.lambdaRole,
     });
 
     const lambda = new Lambda(this, 'Lambda', {
       vpc: vpc.vpc,
       securityGroup: vpc.securityGroup,
       dataBase: rds.database,
-      powerToolsLayer: layer.powerToolsLayer,
-      role: layer.lambdaRole,
     });
 
     new Rule(this, 'ScheduleRule', {

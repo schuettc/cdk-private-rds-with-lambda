@@ -1,10 +1,4 @@
-import {
-  Vpc,
-  SubnetType,
-  SecurityGroup,
-  Peer,
-  Port,
-} from 'aws-cdk-lib/aws-ec2';
+import { Vpc, SubnetType, SecurityGroup, Port } from 'aws-cdk-lib/aws-ec2';
 import { Construct } from 'constructs';
 
 export class VPC extends Construct {
@@ -40,6 +34,6 @@ export class VPC extends Construct {
       description: 'Security Group for Query',
       allowAllOutbound: true,
     });
-    this.securityGroup.addIngressRule(Peer.anyIpv4(), Port.tcp(5432));
+    this.securityGroup.connections.allowInternally(Port.tcp(5432));
   }
 }

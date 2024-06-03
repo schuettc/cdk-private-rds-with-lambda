@@ -5,6 +5,8 @@ const project = new awscdk.AwsCdkTypeScriptApp({
   author: 'Court Schuett',
   copyrightOwner: 'Court Schuett',
   defaultReleaseBranch: 'main',
+  projenrcTs: true,
+  jest: false,
   name: 'private-rds-with-lambda',
   appEntrypoint: 'private-rds-with-lambda.ts',
   depsUpgradeOptions: {
@@ -19,9 +21,7 @@ const project = new awscdk.AwsCdkTypeScriptApp({
   },
   autoApproveUpgrades: true,
   devDeps: [],
-  deps: ['cdk-lambda-powertools-python-layer'],
   projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
-  defaultReleaseBranch: 'main',
 });
 
 const common_exclude = [
@@ -33,7 +33,7 @@ const common_exclude = [
 ];
 
 project.addTask('launch', {
-  exec: 'yarn && yarn projen && yarn build && yarn cdk bootstrap && yarn cdk deploy --hotswap ',
+  exec: 'yarn && yarn projen && yarn cdk bootstrap && yarn cdk deploy --require-approval never',
 });
 
 project.gitignore.exclude(...common_exclude);

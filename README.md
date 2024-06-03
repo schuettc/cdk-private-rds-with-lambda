@@ -78,7 +78,7 @@ Once the PostgreSQL database has been created, we need to initialize it. This wi
 const initializeLambda = new Function(this, 'InitializeTableLambda', {
   code: Code.fromAsset(path.join(__dirname, 'resources/initialize_lambda'), {
     bundling: {
-      image: Runtime.PYTHON_3_9.bundlingImage,
+      image: Runtime.PYTHON_3_12.bundlingImage,
       command: [
         'bash',
         '-c',
@@ -86,7 +86,7 @@ const initializeLambda = new Function(this, 'InitializeTableLambda', {
       ],
     },
   }),
-  runtime: Runtime.PYTHON_3_9,
+  runtime: Runtime.PYTHON_3_12,
   vpc: props.vpc,
   vpcSubnets: { subnetType: SubnetType.PRIVATE_WITH_EGRESS },
   architecture: Architecture.ARM_64,
@@ -122,7 +122,7 @@ def create_table():
             connection.close()
 ```
 
-When this AWS Lamba Function is called during the deployment of the CDK, we will create a table with two columns: `id` and `query_date`. These columns will be used by the recurring Query function to populate the RDS database.
+When this AWS Lambda Function is called during the deployment of the CDK, we will create a table with two columns: `id` and `query_date`. These columns will be used by the recurring Query function to populate the RDS database.
 
 ## EC2 Instance
 

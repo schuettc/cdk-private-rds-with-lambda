@@ -2,36 +2,55 @@ import os
 import json
 import boto3
 import psycopg2
-from aws_lambda_powertools.utilities import parameters
 
 
-SECRET = json.loads(parameters.get_secret(os.environ.get("RDS_SECRET_NAME")))
+def get_secret(secret_name):
+    session = boto3.Session()
+    secrets_manager = session.client("secretsmanager")
+    try:
+        get_secret_value_response = secrets_manager.get_secret_value(
+            SecretId=secret_name
+        )
+    except Exception as e:
+        raise e
+    else:
+        if "SecretString" in get_secret_value_response:
+            secret = get_secret_value_response["SecretString"]
+            return json.loads(secret)
+        else:
+            raise ValueError("Unsupported secret type")
 
-connection = psycopg2.connect(
-    database=SECRET.get("engine"),
-    user=SECRET.get("username"),
-    password=SECRET.get("password"),
-    host=SECRET.get("host"),
-    port="5432",
-)
 
-cursor = connection.cursor()
+SECRET = get_secret(os.environ.get("RDS_SECRET_NAME"))
 
 
 def create_table():
-    create_table = """CREATE TABLE queries(
-            id SERIAL PRIMARY KEY,
-            query_date DATE
-            )
-            """
+    connection = None
     try:
+        connection = psycopg2.connect(
+            database=SECRET.get("engine"),
+            user=SECRET.get("username"),
+            password=SECRET.get("password"),
+            host=SECRET.get("host"),
+            port="5432",
+        )
+        cursor = connection.cursor()
+
+        create_table = """
+            CREATE TABLE IF NOT EXISTS queries (
+                id SERIAL PRIMARY KEY,
+                query_date DATE
+            )
+        """
+
         cursor.execute(create_table)
-        cursor.close()
         connection.commit()
+        print("Table created successfully")
     except (Exception, psycopg2.DatabaseError) as error:
-        print(error)
+        print(f"Error creating table: {error}")
     finally:
         if connection is not None:
+            cursor.close()
             connection.close()
 
 
