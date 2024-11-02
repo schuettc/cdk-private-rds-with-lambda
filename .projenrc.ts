@@ -1,4 +1,6 @@
 const { awscdk } = require('projen');
+const { UpgradeDependenciesSchedule } = require('projen/lib/javascript');
+
 const project = new awscdk.AwsCdkTypeScriptApp({
   cdkVersion: '2.47.0',
   license: 'MIT-0',
@@ -13,6 +15,7 @@ const project = new awscdk.AwsCdkTypeScriptApp({
     ignoreProjen: false,
     workflowOptions: {
       labels: ['auto-approve', 'auto-merge'],
+      schedule: UpgradeDependenciesSchedule.WEEKLY,
     },
   },
   autoApproveOptions: {
