@@ -34,7 +34,5 @@ export class RDS extends Construct {
       backupRetention: Duration.days(21),
       securityGroups: [props.securityGroup],
     });
-
-    this.database.connections.allowInternally;
   }
 }
