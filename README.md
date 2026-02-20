@@ -1,12 +1,24 @@
+## Architecture
+
+This project sets up a secure PostgreSQL RDS instance inside an isolated VPC subnet. To interact with it without public access or needing an EC2 bastion host, we deploy an AWS Lambda function running in the same VPC that connects using RDS IAM Authentication.
+
 ## Deploy CDK
 
+Ensure you are logged into AWS and have the necessary credentials configured. 
+
+Install dependencies:
+```bash
+yarn install
 ```
-yarn launch
+
+Deploy the stack:
+```bash
+yarn cdk deploy --require-approval never
 ```
 
 ## Destroy CDK
 
-```
+```bash
 yarn cdk destroy
 ```
 
@@ -45,7 +57,7 @@ We will be building a VPC with three SubnetTypes. This Construct will build a co
 - Internet Gateway
 - NAT Gateway
 
-We will be using this infrastructure for our EC2 instance, RDS database, and Lambda functions.
+We will be using this infrastructure for our RDS database and Lambda functions.
 
 ## PostgreSQL RDS Database
 
@@ -124,110 +136,18 @@ def create_table():
 
 When this AWS Lambda Function is called during the deployment of the CDK, we will create a table with two columns: `id` and `query_date`. These columns will be used by the recurring Query function to populate the RDS database.
 
-## EC2 Instance
-
-In order to interact with the PostgreSQL database, we will be creating an EC2 instance that is able to connect to the database.
-
-```typescript
-const ec2Instance = new Instance(this, 'Instance', {
-  vpc: props.vpc,
-  vpcSubnets: { subnetType: SubnetType.PRIVATE_WITH_EGRESS },
-  instanceType: InstanceType.of(InstanceClass.C6G, InstanceSize.MEDIUM),
-  machineImage: ami,
-  init: CloudFormationInit.fromConfigSets({
-    configSets: {
-      default: ['install'],
-    },
-    configs: {
-      install: new InitConfig([
-        InitCommand.shellCommand('yum update -y'),
-        InitCommand.shellCommand('yum upgrade -y'),
-        InitCommand.shellCommand('amazon-linux-extras install postgresql15'),
-      ]),
-    },
-  }),
-  initOptions: {
-    timeout: Duration.minutes(20),
-    includeUrl: true,
-    includeRole: true,
-    printLog: true,
-  },
-  role: ec2Role,
-});
-```
-
-This instance will be created in the same `PRIVATE_WITH_EGRESS` SubnetType that the AWS Lambda Functions are created in. This will allow us to install the [`psql` client](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ConnectToPostgreSQLInstance.html#USER_ConnectToPostgreSQLInstance.psql) and connect to the database. This instance can be used only as needed and stopped when not needed to reduce EC2 costs.
-
-From the EC2 Console, you can Connect to the instance.
-
-![EC2Instance](/images/blog/RDS-EC2Instance.png)
+It is deployed to a private isolated subnet, so it is not accessible from the internet. Access is restricted to resources within the VPC, such as the Lambda functions.
 
 ### Secret Manager
 
-In order to connect to the PostgreSQL database, you will need the `hostname`, `username`, and `password`. These have been automatically generated for you and stored in [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/).
+### IAM Authentication
 
-![SecretManger](/images/blog/RDS-SecretManager.png)
+The Lambda functions use IAM Database Authentication to connect to RDS. This eliminates the need for hardcoded passwords or retrieving secrets at runtime. The `QueryLambda` generates an IAM auth token using `boto3` and uses it to connect securely.
 
-Once connected to the the EC2 Instance, using [AWS Session Manger](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html) you can connect to the RDS database using `psql`.
+### Connecting Without EC2
 
-```bash
-psql -h host -p 5432 -U postgres postgres
-```
-
-In this example, replace `host` with the value from the Secrets.
-
-![Secrets](/images/blog/RDS-Secrets.png)
-
-At the prompt, enter the `password` from the Secrets.
-
-### PostgreSQL Verification
-
-From the prompt, verify that the table has been created:
-
-```sql
-\dt+
-```
-
-Output:
-
-```
-                      List of relations
- Schema |  Name   | Type  |  Owner   |  Size   | Description
---------+---------+-------+----------+---------+-------------
- public | queries | table | postgres | 0 bytes |
-```
-
-However, nothing has been created in the table yet:
-
-```sql
-SELECT * FROM queries;
-```
-
-Output:
-
-```
- id | query_date
-----+------------
-(0 rows)
-```
-
-### Writing Data
-
-To write data to the PostgreSQL database, you can wait for the EventBridge scheduled rule to trigger the AWS Lambda Function, or you can test the function manually. Once run, the AWS Lambda function should write a single record to the file that can be seen by using:
-
-```SQL
-SELECT * FROM queries;
-```
-
-With expected output similar to:
-
-```
- id | query_date
-----+------------
-  1 | 2022-11-07
-(1 row)
-```
+Since there is no public access or EC2 bastion host, all interactions with the database are handled programmatically through Lambda functions within the VPC using IAM authentication.
 
 ## Conclusion
 
-You should now have an Amazon RDS database deployed to an isolated subnet that is able to be used by both an EC2 Instance and AWS Lambda function. This will allow you to update and interact with the PostgreSQL database while ensuring that it is in an isolated subnet. In future posts, we will explore how this database can be used with Amazon Quicksight to create customized reports and dashboards.
+You should now have an Amazon RDS database deployed to an isolated subnet that is accessible by AWS Lambda functions using secure IAM Authentication. This architecture avoids the need for public subnets or managing EC2 bastion hosts while remaining highly secure.

@@ -5,24 +5,13 @@ import boto3
 import psycopg2
 
 
-def get_secret(secret_name):
-    session = boto3.Session()
-    secrets_manager = session.client("secretsmanager")
-    try:
-        get_secret_value_response = secrets_manager.get_secret_value(
-            SecretId=secret_name
-        )
-    except Exception as e:
-        raise e
-    else:
-        if "SecretString" in get_secret_value_response:
-            secret = get_secret_value_response["SecretString"]
-            return json.loads(secret)
-        else:
-            raise ValueError("Unsupported secret type")
-
-
-SECRET = get_secret(os.environ.get("RDS_SECRET_NAME"))
+def get_auth_token():
+    client = boto3.client("rds")
+    return client.generate_db_auth_token(
+        DBHostname=os.environ.get("DB_HOST"),
+        Port=os.environ.get("DB_PORT"),
+        DBUsername="postgres",
+    )
 
 
 def write_data():
@@ -30,11 +19,12 @@ def write_data():
     connection = None
     try:
         connection = psycopg2.connect(
-            database=SECRET.get("engine"),
-            user=SECRET.get("username"),
-            password=SECRET.get("password"),
-            host=SECRET.get("host"),
-            port="5432",
+            database="postgres",
+            user="postgres",
+            password=get_auth_token(),
+            host=os.environ.get("DB_HOST"),
+            port=os.environ.get("DB_PORT"),
+            sslmode="require",
         )
         cursor = connection.cursor()
 

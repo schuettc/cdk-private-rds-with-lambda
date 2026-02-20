@@ -1,0 +1,566 @@
+Bundling asset private-rds-with-lambda/initialize/InitializeTableLambda/Code/Stage...
+WARNING: The directory '/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+Collecting boto3==1.34.117 (from -r requirements.txt (line 1))
+  Downloading boto3-1.34.117-py3-none-any.whl.metadata (6.6 kB)
+Collecting botocore==1.34.117 (from -r requirements.txt (line 2))
+  Downloading botocore-1.34.117-py3-none-any.whl.metadata (5.7 kB)
+Collecting jmespath==1.0.1 (from -r requirements.txt (line 3))
+  Downloading jmespath-1.0.1-py3-none-any.whl.metadata (7.6 kB)
+Collecting psycopg2-binary==2.9.9 (from -r requirements.txt (line 4))
+  Downloading psycopg2_binary-2.9.9-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl.metadata (4.4 kB)
+Collecting python-dateutil==2.9.0.post0 (from -r requirements.txt (line 5))
+  Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Collecting s3transfer==0.10.1 (from -r requirements.txt (line 6))
+  Downloading s3transfer-0.10.1-py3-none-any.whl.metadata (1.7 kB)
+Collecting six==1.16.0 (from -r requirements.txt (line 7))
+  Downloading six-1.16.0-py2.py3-none-any.whl.metadata (1.8 kB)
+Collecting urllib3==1.26.19 (from -r requirements.txt (line 8))
+  Downloading urllib3-1.26.19-py2.py3-none-any.whl.metadata (49 kB)
+Downloading boto3-1.34.117-py3-none-any.whl (139 kB)
+Downloading botocore-1.34.117-py3-none-any.whl (12.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.3/12.3 MB 57.5 MB/s eta 0:00:00
+Downloading jmespath-1.0.1-py3-none-any.whl (20 kB)
+Downloading psycopg2_binary-2.9.9-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (2.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.9/2.9 MB 81.8 MB/s eta 0:00:00
+Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Downloading s3transfer-0.10.1-py3-none-any.whl (82 kB)
+Downloading six-1.16.0-py2.py3-none-any.whl (11 kB)
+Downloading urllib3-1.26.19-py2.py3-none-any.whl (143 kB)
+Installing collected packages: urllib3, six, psycopg2-binary, jmespath, python-dateutil, botocore, s3transfer, boto3
+Successfully installed boto3-1.34.117 botocore-1.34.117 jmespath-1.0.1 psycopg2-binary-2.9.9 python-dateutil-2.9.0.post0 s3transfer-0.10.1 six-1.16.0 urllib3-1.26.19
+
+[notice] A new release of pip is available: 25.0.1 -> 26.0.1
+[notice] To update, run: pip install --upgrade pip
+  console.warn
+    [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+      use `logGroup` instead
+      This API will be removed in the next major release.
+
+      50 |     initializeLambda.connections.allowToDefaultPort(props.dataBase);
+      51 |
+    > 52 |     const provider = new Provider(this, 'CustomResourceProvider', {
+         |                      ^
+      53 |       onEventHandler: initializeLambda,
+      54 |       logRetention: RetentionDays.ONE_WEEK,
+      55 |     });
+
+      at print (node_modules/aws-cdk-lib/.warnings.jsii.js:9:146)
+      at Object.aws_cdk_lib_aws_lambda_FunctionProps (node_modules/aws-cdk-lib/.warnings.jsii.js:5:645754)
+      at new Function2 (node_modules/aws-cdk-lib/aws-lambda/lib/function.js:1:13803)
+      at new Function2 (node_modules/aws-cdk-lib/core/lib/prop-injectable.js:1:619)
+      at WrappedClass.createFunction (node_modules/aws-cdk-lib/custom-resources/lib/provider-framework/provider.js:1:6720)
+      at new Provider2 (node_modules/aws-cdk-lib/custom-resources/lib/provider-framework/provider.js:1:5242)
+      at new Provider2 (node_modules/aws-cdk-lib/core/lib/prop-injectable.js:1:619)
+      at new Initialize (src/initialize.ts:52:22)
+      at new PrivateRDSWithLambda (src/private-rds-with-lambda.ts:17:5)
+      at Object.<anonymous> (src/private-rds-with-lambda.ts:53:1)
+      at Object.<anonymous> (test/security.test.ts:4:1)
+
+Bundling asset private-rds-with-lambda/Lambda/QueryLambda/Code/Stage...
+WARNING: The directory '/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+Collecting boto3==1.34.117 (from -r requirements.txt (line 1))
+  Downloading boto3-1.34.117-py3-none-any.whl.metadata (6.6 kB)
+Collecting botocore==1.34.117 (from -r requirements.txt (line 2))
+  Downloading botocore-1.34.117-py3-none-any.whl.metadata (5.7 kB)
+Collecting jmespath==1.0.1 (from -r requirements.txt (line 3))
+  Downloading jmespath-1.0.1-py3-none-any.whl.metadata (7.6 kB)
+Collecting psycopg2-binary==2.9.9 (from -r requirements.txt (line 4))
+  Downloading psycopg2_binary-2.9.9-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl.metadata (4.4 kB)
+Collecting python-dateutil==2.9.0.post0 (from -r requirements.txt (line 5))
+  Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Collecting s3transfer==0.10.1 (from -r requirements.txt (line 6))
+  Downloading s3transfer-0.10.1-py3-none-any.whl.metadata (1.7 kB)
+Collecting six==1.16.0 (from -r requirements.txt (line 7))
+  Downloading six-1.16.0-py2.py3-none-any.whl.metadata (1.8 kB)
+Collecting urllib3==1.26.19 (from -r requirements.txt (line 8))
+  Downloading urllib3-1.26.19-py2.py3-none-any.whl.metadata (49 kB)
+Downloading boto3-1.34.117-py3-none-any.whl (139 kB)
+Downloading botocore-1.34.117-py3-none-any.whl (12.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.3/12.3 MB 55.9 MB/s eta 0:00:00
+Downloading jmespath-1.0.1-py3-none-any.whl (20 kB)
+Downloading psycopg2_binary-2.9.9-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (2.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.9/2.9 MB 157.4 MB/s eta 0:00:00
+Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Downloading s3transfer-0.10.1-py3-none-any.whl (82 kB)
+Downloading six-1.16.0-py2.py3-none-any.whl (11 kB)
+Downloading urllib3-1.26.19-py2.py3-none-any.whl (143 kB)
+Installing collected packages: urllib3, six, psycopg2-binary, jmespath, python-dateutil, botocore, s3transfer, boto3
+Successfully installed boto3-1.34.117 botocore-1.34.117 jmespath-1.0.1 psycopg2-binary-2.9.9 python-dateutil-2.9.0.post0 s3transfer-0.10.1 six-1.16.0 urllib3-1.26.19
+
+[notice] A new release of pip is available: 25.0.1 -> 26.0.1
+[notice] To update, run: pip install --upgrade pip
+Bundling asset test/initialize/InitializeTableLambda/Code/Stage...
+WARNING: The directory '/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+Collecting boto3==1.34.117 (from -r requirements.txt (line 1))
+  Downloading boto3-1.34.117-py3-none-any.whl.metadata (6.6 kB)
+Collecting botocore==1.34.117 (from -r requirements.txt (line 2))
+  Downloading botocore-1.34.117-py3-none-any.whl.metadata (5.7 kB)
+Collecting jmespath==1.0.1 (from -r requirements.txt (line 3))
+  Downloading jmespath-1.0.1-py3-none-any.whl.metadata (7.6 kB)
+Collecting psycopg2-binary==2.9.9 (from -r requirements.txt (line 4))
+  Downloading psycopg2_binary-2.9.9-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl.metadata (4.4 kB)
+Collecting python-dateutil==2.9.0.post0 (from -r requirements.txt (line 5))
+  Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Collecting s3transfer==0.10.1 (from -r requirements.txt (line 6))
+  Downloading s3transfer-0.10.1-py3-none-any.whl.metadata (1.7 kB)
+Collecting six==1.16.0 (from -r requirements.txt (line 7))
+  Downloading six-1.16.0-py2.py3-none-any.whl.metadata (1.8 kB)
+Collecting urllib3==1.26.19 (from -r requirements.txt (line 8))
+  Downloading urllib3-1.26.19-py2.py3-none-any.whl.metadata (49 kB)
+Downloading boto3-1.34.117-py3-none-any.whl (139 kB)
+Downloading botocore-1.34.117-py3-none-any.whl (12.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.3/12.3 MB 48.7 MB/s eta 0:00:00
+Downloading jmespath-1.0.1-py3-none-any.whl (20 kB)
+Downloading psycopg2_binary-2.9.9-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (2.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.9/2.9 MB 9.0 MB/s eta 0:00:00
+Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Downloading s3transfer-0.10.1-py3-none-any.whl (82 kB)
+Downloading six-1.16.0-py2.py3-none-any.whl (11 kB)
+Downloading urllib3-1.26.19-py2.py3-none-any.whl (143 kB)
+Installing collected packages: urllib3, six, psycopg2-binary, jmespath, python-dateutil, botocore, s3transfer, boto3
+Successfully installed boto3-1.34.117 botocore-1.34.117 jmespath-1.0.1 psycopg2-binary-2.9.9 python-dateutil-2.9.0.post0 s3transfer-0.10.1 six-1.16.0 urllib3-1.26.19
+
+[notice] A new release of pip is available: 25.0.1 -> 26.0.1
+[notice] To update, run: pip install --upgrade pip
+  console.warn
+    [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+      use `logGroup` instead
+      This API will be removed in the next major release.
+
+      50 |     initializeLambda.connections.allowToDefaultPort(props.dataBase);
+      51 |
+    > 52 |     const provider = new Provider(this, 'CustomResourceProvider', {
+         |                      ^
+      53 |       onEventHandler: initializeLambda,
+      54 |       logRetention: RetentionDays.ONE_WEEK,
+      55 |     });
+
+      at print (node_modules/aws-cdk-lib/.warnings.jsii.js:9:146)
+      at Object.aws_cdk_lib_aws_lambda_FunctionProps (node_modules/aws-cdk-lib/.warnings.jsii.js:5:645754)
+      at new Function2 (node_modules/aws-cdk-lib/aws-lambda/lib/function.js:1:13803)
+      at new Function2 (node_modules/aws-cdk-lib/core/lib/prop-injectable.js:1:619)
+      at WrappedClass.createFunction (node_modules/aws-cdk-lib/custom-resources/lib/provider-framework/provider.js:1:6720)
+      at new Provider2 (node_modules/aws-cdk-lib/custom-resources/lib/provider-framework/provider.js:1:5242)
+      at new Provider2 (node_modules/aws-cdk-lib/core/lib/prop-injectable.js:1:619)
+      at new Initialize (src/initialize.ts:52:22)
+      at new PrivateRDSWithLambda (src/private-rds-with-lambda.ts:17:5)
+      at Object.<anonymous> (test/security.test.ts:8:19)
+
+Bundling asset test/Lambda/QueryLambda/Code/Stage...
+WARNING: The directory '/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+Collecting boto3==1.34.117 (from -r requirements.txt (line 1))
+  Downloading boto3-1.34.117-py3-none-any.whl.metadata (6.6 kB)
+Collecting botocore==1.34.117 (from -r requirements.txt (line 2))
+  Downloading botocore-1.34.117-py3-none-any.whl.metadata (5.7 kB)
+Collecting jmespath==1.0.1 (from -r requirements.txt (line 3))
+  Downloading jmespath-1.0.1-py3-none-any.whl.metadata (7.6 kB)
+Collecting psycopg2-binary==2.9.9 (from -r requirements.txt (line 4))
+  Downloading psycopg2_binary-2.9.9-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl.metadata (4.4 kB)
+Collecting python-dateutil==2.9.0.post0 (from -r requirements.txt (line 5))
+  Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Collecting s3transfer==0.10.1 (from -r requirements.txt (line 6))
+  Downloading s3transfer-0.10.1-py3-none-any.whl.metadata (1.7 kB)
+Collecting six==1.16.0 (from -r requirements.txt (line 7))
+  Downloading six-1.16.0-py2.py3-none-any.whl.metadata (1.8 kB)
+Collecting urllib3==1.26.19 (from -r requirements.txt (line 8))
+  Downloading urllib3-1.26.19-py2.py3-none-any.whl.metadata (49 kB)
+Downloading boto3-1.34.117-py3-none-any.whl (139 kB)
+Downloading botocore-1.34.117-py3-none-any.whl (12.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.3/12.3 MB 35.5 MB/s eta 0:00:00
+Downloading jmespath-1.0.1-py3-none-any.whl (20 kB)
+Downloading psycopg2_binary-2.9.9-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (2.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.9/2.9 MB 9.9 MB/s eta 0:00:00
+Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Downloading s3transfer-0.10.1-py3-none-any.whl (82 kB)
+Downloading six-1.16.0-py2.py3-none-any.whl (11 kB)
+Downloading urllib3-1.26.19-py2.py3-none-any.whl (143 kB)
+Installing collected packages: urllib3, six, psycopg2-binary, jmespath, python-dateutil, botocore, s3transfer, boto3
+Successfully installed boto3-1.34.117 botocore-1.34.117 jmespath-1.0.1 psycopg2-binary-2.9.9 python-dateutil-2.9.0.post0 s3transfer-0.10.1 six-1.16.0 urllib3-1.26.19
+
+[notice] A new release of pip is available: 25.0.1 -> 26.0.1
+[notice] To update, run: pip install --upgrade pip
+(node:8529) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+FAIL test/security.test.ts (21.399 s)
+  ✕ Security Checks (8118 ms)
+
+  ● Security Checks
+
+    Expected value   undefined
+    Received:
+      undefined
+
+    Message:
+      Expected no matches, but stack has 8 messages as follows:
+      {
+        "1": {
+          "level": "error",
+          "entry": {
+            "type": "aws:cdk:error",
+            "data": "AwsSolutions-SMG4: The secret does not have automatic rotation scheduled.\n",
+            "trace": [
+              "Annotations.addMessage (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/annotations.js:1:2004)",
+              "Annotations.addError (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1466)",
+              "AnnotationLogger.onNonCompliance (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/nag-logger.ts:143:39)",
+              "/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/nag-pack.ts:185:17",
+              "Array.forEach (<anonymous>)",
+              "AwsSolutionsChecks.applyRule (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/nag-pack.ts:184:26)",
+              "AwsSolutionsChecks.checkSecurityCompliance (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/packs/aws-solutions.ts:1289:10)",
+              "AwsSolutionsChecks.visit (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/packs/aws-solutions.ts:206:12)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4537)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "invokeAspectsV2 (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:3163)",
+              "synthesize (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:1:1833)",
+              "App.synth (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/stage.js:1:3076)",
+              "toMessages (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/assertions/lib/annotations.js:1:3101)",
+              "Annotations.fromStack (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/assertions/lib/annotations.js:1:779)",
+              "Object.<anonymous> (/Users/courtschuett/.gemini/antigravity/scratch/test/security.test.ts:20:37)",
+              "Promise.finally.completed (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1557:28)",
+              "new Promise (<anonymous>)",
+              "callAsyncCircusFn (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1497:10)",
+              "_callCircusTest (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1007:40)",
+              "processTicksAndRejections (node:internal/process/task_queues:103:5)",
+              "_runTest (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:947:3)",
+              "/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:849:7",
+              "_runTestsForDescribeBlock (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:862:11)",
+              "run (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:761:3)",
+              "runAndTransformResultsToJestFormat (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1918:21)",
+              "jestAdapter (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/runner.js:101:19)",
+              "runTestInternal (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-runner/build/index.js:275:16)",
+              "runTest (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-runner/build/index.js:343:7)"
+            ]
+          },
+          "id": "/test/rds/database/Secret/Resource"
+        },
+        "2": {
+          "level": "error",
+          "entry": {
+            "type": "aws:cdk:error",
+            "data": "AwsSolutions-RDS3: The non-Aurora RDS DB instance does not have multi-AZ support enabled.\n",
+            "trace": [
+              "Annotations.addMessage (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/annotations.js:1:2004)",
+              "Annotations.addError (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1466)",
+              "AnnotationLogger.onNonCompliance (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/nag-logger.ts:143:39)",
+              "/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/nag-pack.ts:185:17",
+              "Array.forEach (<anonymous>)",
+              "AwsSolutionsChecks.applyRule (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/nag-pack.ts:184:26)",
+              "AwsSolutionsChecks.checkDatabases (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/packs/aws-solutions.ts:463:10)",
+              "AwsSolutionsChecks.visit (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/packs/aws-solutions.ts:201:12)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4537)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "invokeAspectsV2 (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:3163)",
+              "synthesize (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:1:1833)",
+              "App.synth (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/stage.js:1:3076)",
+              "toMessages (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/assertions/lib/annotations.js:1:3101)",
+              "Annotations.fromStack (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/assertions/lib/annotations.js:1:779)",
+              "Object.<anonymous> (/Users/courtschuett/.gemini/antigravity/scratch/test/security.test.ts:20:37)",
+              "Promise.finally.completed (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1557:28)",
+              "new Promise (<anonymous>)",
+              "callAsyncCircusFn (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1497:10)",
+              "_callCircusTest (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1007:40)",
+              "processTicksAndRejections (node:internal/process/task_queues:103:5)",
+              "_runTest (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:947:3)",
+              "/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:849:7",
+              "_runTestsForDescribeBlock (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:862:11)",
+              "run (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:761:3)",
+              "runAndTransformResultsToJestFormat (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1918:21)",
+              "jestAdapter (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/runner.js:101:19)",
+              "runTestInternal (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-runner/build/index.js:275:16)",
+              "runTest (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-runner/build/index.js:343:7)"
+            ]
+          },
+          "id": "/test/rds/database/Resource"
+        },
+        "3": {
+          "level": "error",
+          "entry": {
+            "type": "aws:cdk:error",
+            "data": "AwsSolutions-RDS10: The RDS instance or Aurora DB cluster does not have deletion protection enabled.\n",
+            "trace": [
+              "Annotations.addMessage (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/annotations.js:1:2004)",
+              "Annotations.addError (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1466)",
+              "AnnotationLogger.onNonCompliance (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/nag-logger.ts:143:39)",
+              "/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/nag-pack.ts:185:17",
+              "Array.forEach (<anonymous>)",
+              "AwsSolutionsChecks.applyRule (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/nag-pack.ts:184:26)",
+              "AwsSolutionsChecks.checkDatabases (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/packs/aws-solutions.ts:490:10)",
+              "AwsSolutionsChecks.visit (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/packs/aws-solutions.ts:201:12)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4537)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "invokeAspectsV2 (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:3163)",
+              "synthesize (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:1:1833)",
+              "App.synth (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/stage.js:1:3076)",
+              "toMessages (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/assertions/lib/annotations.js:1:3101)",
+              "Annotations.fromStack (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/assertions/lib/annotations.js:1:779)",
+              "Object.<anonymous> (/Users/courtschuett/.gemini/antigravity/scratch/test/security.test.ts:20:37)",
+              "Promise.finally.completed (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1557:28)",
+              "new Promise (<anonymous>)",
+              "callAsyncCircusFn (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1497:10)",
+              "_callCircusTest (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1007:40)",
+              "processTicksAndRejections (node:internal/process/task_queues:103:5)",
+              "_runTest (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:947:3)",
+              "/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:849:7",
+              "_runTestsForDescribeBlock (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:862:11)",
+              "run (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:761:3)",
+              "runAndTransformResultsToJestFormat (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1918:21)",
+              "jestAdapter (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/runner.js:101:19)",
+              "runTestInternal (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-runner/build/index.js:275:16)",
+              "runTest (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-runner/build/index.js:343:7)"
+            ]
+          },
+          "id": "/test/rds/database/Resource"
+        },
+        "4": {
+          "level": "error",
+          "entry": {
+            "type": "aws:cdk:error",
+            "data": "AwsSolutions-RDS11: The RDS instance or Aurora DB cluster uses the default endpoint port.\n",
+            "trace": [
+              "Annotations.addMessage (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/annotations.js:1:2004)",
+              "Annotations.addError (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1466)",
+              "AnnotationLogger.onNonCompliance (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/nag-logger.ts:143:39)",
+              "/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/nag-pack.ts:185:17",
+              "Array.forEach (<anonymous>)",
+              "AwsSolutionsChecks.applyRule (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/nag-pack.ts:184:26)",
+              "AwsSolutionsChecks.checkDatabases (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/packs/aws-solutions.ts:499:10)",
+              "AwsSolutionsChecks.visit (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/packs/aws-solutions.ts:201:12)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4537)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "invokeAspectsV2 (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:3163)",
+              "synthesize (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:1:1833)",
+              "App.synth (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/stage.js:1:3076)",
+              "toMessages (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/assertions/lib/annotations.js:1:3101)",
+              "Annotations.fromStack (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/assertions/lib/annotations.js:1:779)",
+              "Object.<anonymous> (/Users/courtschuett/.gemini/antigravity/scratch/test/security.test.ts:20:37)",
+              "Promise.finally.completed (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1557:28)",
+              "new Promise (<anonymous>)",
+              "callAsyncCircusFn (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1497:10)",
+              "_callCircusTest (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1007:40)",
+              "processTicksAndRejections (node:internal/process/task_queues:103:5)",
+              "_runTest (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:947:3)",
+              "/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:849:7",
+              "_runTestsForDescribeBlock (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:862:11)",
+              "run (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:761:3)",
+              "runAndTransformResultsToJestFormat (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1918:21)",
+              "jestAdapter (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/runner.js:101:19)",
+              "runTestInternal (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-runner/build/index.js:275:16)",
+              "runTest (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-runner/build/index.js:343:7)"
+            ]
+          },
+          "id": "/test/rds/database/Resource"
+        },
+        "7": {
+          "level": "error",
+          "entry": {
+            "type": "aws:cdk:error",
+            "data": "AwsSolutions-EC23: The Security Group allows for 0.0.0.0/0 or ::/0 inbound access.\n",
+            "trace": [
+              "Annotations.addMessage (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/annotations.js:1:2004)",
+              "Annotations.addError (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1466)",
+              "AnnotationLogger.onNonCompliance (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/nag-logger.ts:143:39)",
+              "/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/nag-pack.ts:185:17",
+              "Array.forEach (<anonymous>)",
+              "AwsSolutionsChecks.applyRule (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/nag-pack.ts:184:26)",
+              "AwsSolutionsChecks.checkCompute (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/packs/aws-solutions.ts:248:10)",
+              "AwsSolutionsChecks.visit (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/packs/aws-solutions.ts:199:12)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4537)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "invokeAspectsV2 (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:3163)",
+              "synthesize (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:1:1833)",
+              "App.synth (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/stage.js:1:3076)",
+              "toMessages (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/assertions/lib/annotations.js:1:3101)",
+              "Annotations.fromStack (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/assertions/lib/annotations.js:1:779)",
+              "Object.<anonymous> (/Users/courtschuett/.gemini/antigravity/scratch/test/security.test.ts:20:37)",
+              "Promise.finally.completed (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1557:28)",
+              "new Promise (<anonymous>)",
+              "callAsyncCircusFn (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1497:10)",
+              "_callCircusTest (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1007:40)",
+              "processTicksAndRejections (node:internal/process/task_queues:103:5)",
+              "_runTest (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:947:3)",
+              "/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:849:7",
+              "_runTestsForDescribeBlock (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:862:11)",
+              "run (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:761:3)",
+              "runAndTransformResultsToJestFormat (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1918:21)",
+              "jestAdapter (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/runner.js:101:19)",
+              "runTestInternal (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-runner/build/index.js:275:16)",
+              "runTest (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-runner/build/index.js:343:7)"
+            ]
+          },
+          "id": "/test/EC2Instance/SSHSecurityGroup/Resource"
+        },
+        "8": {
+          "level": "error",
+          "entry": {
+            "type": "aws:cdk:error",
+            "data": "AwsSolutions-EC26: The resource creates one or more EBS volumes that have encryption disabled.\n",
+            "trace": [
+              "Annotations.addMessage (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/annotations.js:1:2004)",
+              "Annotations.addError (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1466)",
+              "AnnotationLogger.onNonCompliance (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/nag-logger.ts:143:39)",
+              "/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/nag-pack.ts:185:17",
+              "Array.forEach (<anonymous>)",
+              "AwsSolutionsChecks.applyRule (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/nag-pack.ts:184:26)",
+              "AwsSolutionsChecks.checkCompute (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/packs/aws-solutions.ts:257:10)",
+              "AwsSolutionsChecks.visit (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/packs/aws-solutions.ts:199:12)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4537)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "invokeAspectsV2 (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:3163)",
+              "synthesize (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:1:1833)",
+              "App.synth (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/stage.js:1:3076)",
+              "toMessages (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/assertions/lib/annotations.js:1:3101)",
+              "Annotations.fromStack (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/assertions/lib/annotations.js:1:779)",
+              "Object.<anonymous> (/Users/courtschuett/.gemini/antigravity/scratch/test/security.test.ts:20:37)",
+              "Promise.finally.completed (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1557:28)",
+              "new Promise (<anonymous>)",
+              "callAsyncCircusFn (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1497:10)",
+              "_callCircusTest (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1007:40)",
+              "processTicksAndRejections (node:internal/process/task_queues:103:5)",
+              "_runTest (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:947:3)",
+              "/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:849:7",
+              "_runTestsForDescribeBlock (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:862:11)",
+              "run (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:761:3)",
+              "runAndTransformResultsToJestFormat (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1918:21)",
+              "jestAdapter (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/runner.js:101:19)",
+              "runTestInternal (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-runner/build/index.js:275:16)",
+              "runTest (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-runner/build/index.js:343:7)"
+            ]
+          },
+          "id": "/test/EC2Instance/Instance/Resource"
+        },
+        "9": {
+          "level": "error",
+          "entry": {
+            "type": "aws:cdk:error",
+            "data": "AwsSolutions-EC28: The EC2 instance/AutoScaling launch configuration does not have detailed monitoring enabled.\n",
+            "trace": [
+              "Annotations.addMessage (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/annotations.js:1:2004)",
+              "Annotations.addError (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1466)",
+              "AnnotationLogger.onNonCompliance (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/nag-logger.ts:143:39)",
+              "/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/nag-pack.ts:185:17",
+              "Array.forEach (<anonymous>)",
+              "AwsSolutionsChecks.applyRule (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/nag-pack.ts:184:26)",
+              "AwsSolutionsChecks.checkCompute (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/packs/aws-solutions.ts:275:10)",
+              "AwsSolutionsChecks.visit (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/packs/aws-solutions.ts:199:12)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4537)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "invokeAspectsV2 (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:3163)",
+              "synthesize (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:1:1833)",
+              "App.synth (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/stage.js:1:3076)",
+              "toMessages (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/assertions/lib/annotations.js:1:3101)",
+              "Annotations.fromStack (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/assertions/lib/annotations.js:1:779)",
+              "Object.<anonymous> (/Users/courtschuett/.gemini/antigravity/scratch/test/security.test.ts:20:37)",
+              "Promise.finally.completed (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1557:28)",
+              "new Promise (<anonymous>)",
+              "callAsyncCircusFn (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1497:10)",
+              "_callCircusTest (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1007:40)",
+              "processTicksAndRejections (node:internal/process/task_queues:103:5)",
+              "_runTest (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:947:3)",
+              "/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:849:7",
+              "_runTestsForDescribeBlock (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:862:11)",
+              "run (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:761:3)",
+              "runAndTransformResultsToJestFormat (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1918:21)",
+              "jestAdapter (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/runner.js:101:19)",
+              "runTestInternal (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-runner/build/index.js:275:16)",
+              "runTest (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-runner/build/index.js:343:7)"
+            ]
+          },
+          "id": "/test/EC2Instance/Instance/Resource"
+        },
+        "10": {
+          "level": "error",
+          "entry": {
+            "type": "aws:cdk:error",
+            "data": "AwsSolutions-EC29: The EC2 instance is not part of an ASG and has Termination Protection disabled.\n",
+            "trace": [
+              "Annotations.addMessage (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/annotations.js:1:2004)",
+              "Annotations.addError (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1466)",
+              "AnnotationLogger.onNonCompliance (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/nag-logger.ts:143:39)",
+              "/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/nag-pack.ts:185:17",
+              "Array.forEach (<anonymous>)",
+              "AwsSolutionsChecks.applyRule (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/nag-pack.ts:184:26)",
+              "AwsSolutionsChecks.checkCompute (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/packs/aws-solutions.ts:284:10)",
+              "AwsSolutionsChecks.visit (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/cdk-nag/src/packs/aws-solutions.ts:199:12)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4537)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "recurse (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:4772)",
+              "invokeAspectsV2 (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:2:3163)",
+              "synthesize (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:1:1833)",
+              "App.synth (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/core/lib/stage.js:1:3076)",
+              "toMessages (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/assertions/lib/annotations.js:1:3101)",
+              "Annotations.fromStack (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/aws-cdk-lib/assertions/lib/annotations.js:1:779)",
+              "Object.<anonymous> (/Users/courtschuett/.gemini/antigravity/scratch/test/security.test.ts:20:37)",
+              "Promise.finally.completed (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1557:28)",
+              "new Promise (<anonymous>)",
+              "callAsyncCircusFn (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1497:10)",
+              "_callCircusTest (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1007:40)",
+              "processTicksAndRejections (node:internal/process/task_queues:103:5)",
+              "_runTest (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:947:3)",
+              "/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:849:7",
+              "_runTestsForDescribeBlock (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:862:11)",
+              "run (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:761:3)",
+              "runAndTransformResultsToJestFormat (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/jestAdapterInit.js:1918:21)",
+              "jestAdapter (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-circus/build/runner.js:101:19)",
+              "runTestInternal (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-runner/build/index.js:275:16)",
+              "runTest (/Users/courtschuett/.gemini/antigravity/scratch/node_modules/jest-runner/build/index.js:343:7)"
+            ]
+          },
+          "id": "/test/EC2Instance/Instance/Resource"
+        }
+      }
+
+    Difference:
+
+    Compared values have no visual difference.
+
+      21 |
+      22 |     // Expect no errors, but allow warnings
+    > 23 |     annotations.hasNoError('*', Match.anyValue());
+         |                 ^
+      24 | });
+      25 |
+
+      at Annotations.hasNoError (node_modules/aws-cdk-lib/assertions/lib/annotations.js:1:1250)
+      at Object.<anonymous> (test/security.test.ts:23:17)
+
+----------------------------|---------|----------|---------|---------|-------------------
+File                        | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+----------------------------|---------|----------|---------|---------|-------------------
+All files                   |     100 |    63.63 |     100 |     100 |                   
+ ec2.ts                     |     100 |      100 |     100 |     100 |                   
+ index.ts                   |     100 |      100 |     100 |     100 |                   
+ initialize.ts              |     100 |    33.33 |     100 |     100 | 41-47             
+ lambda.ts                  |     100 |    33.33 |     100 |     100 | 38-44             
+ private-rds-with-lambda.ts |     100 |      100 |     100 |     100 |                   
+ quicksight.ts              |     100 |      100 |     100 |     100 |                   
+ rds.ts                     |     100 |      100 |     100 |     100 |                   
+ vpc.ts                     |     100 |      100 |     100 |     100 |                   
+----------------------------|---------|----------|---------|---------|-------------------
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        21.538 s, estimated 23 s
+Ran all test suites matching test/security.test.ts.

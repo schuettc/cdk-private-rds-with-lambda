@@ -7,7 +7,11 @@ import {
   InstanceSize,
   SecurityGroup,
 } from 'aws-cdk-lib/aws-ec2';
-import { DatabaseInstance, DatabaseInstanceEngine } from 'aws-cdk-lib/aws-rds';
+import {
+  DatabaseInstance,
+  DatabaseInstanceEngine,
+  PostgresEngineVersion,
+} from 'aws-cdk-lib/aws-rds';
 import { Construct } from 'constructs';
 
 interface RDSProps {
@@ -21,7 +25,9 @@ export class RDS extends Construct {
     super(scope, id);
 
     this.database = new DatabaseInstance(this, 'database', {
-      engine: DatabaseInstanceEngine.POSTGRES,
+      engine: DatabaseInstanceEngine.postgres({
+        version: PostgresEngineVersion.of('16.6', '16.6'),
+      }),
       vpc: props.vpc,
       vpcSubnets: { subnetType: SubnetType.PRIVATE_ISOLATED },
       instanceType: InstanceType.of(
@@ -33,6 +39,8 @@ export class RDS extends Construct {
       autoMinorVersionUpgrade: true,
       backupRetention: Duration.days(21),
       securityGroups: [props.securityGroup],
+      iamAuthentication: true,
+      storageEncrypted: true,
     });
   }
 }
